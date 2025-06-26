@@ -1,0 +1,145 @@
+<templateSet group="user">
+  <template name="BIT" value="struct fenwick{&#10;vector&lt;ll&gt;bit;&#10;fenwick(ll n){&#10;  bit.resize(n+100);&#10;}&#10;void add(ll i, ll v){&#10;  while(i&lt;bit.size()){&#10;    bit[i]+=v;&#10;    i+= i&amp;(-i);&#10;  }&#10;}&#10;ll get(ll i){&#10;  ll ret=0;&#10;  while(i&gt;0){&#10;    ret+=bit[i];&#10;    i-=i&amp;(-i);&#10;  }&#10;  return ret;&#10;}&#10;void add_range(ll l,ll r,ll val){&#10;  add(l,val);&#10;  add(r+1,-val);&#10;}&#10;ll sum(ll l,ll r){&#10;  ll a=get(r);&#10;  ll b=get(l-1);&#10;  return a-b;&#10;}&#10;};" description="BIT" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="&lt;abbreviation&gt;" value="struct fenwick{&#10;    vector&lt;ll&gt;bit;&#10;    fenwick(ll n){&#10;        bit.resize()n+100);&#10;    }&#10;    void add(ll i, ll v){&#10;        while(i&lt;bit.size())){&#10;            bit[i]+=v;&#10;            i+= i&amp;(-i);&#10;        }&#10;    }&#10;    ll get(ll i){&#10;        ll ret=0;&#10;        while(i&gt;0){&#10;            ret+=bit[i];&#10;            i-=i&amp;(-i);&#10;        }&#10;        return ret;&#10;    }&#10;    void add_range(ll l,ll r,ll val){&#10;        add()l,val);&#10;        add()r+1,-val);&#10;    }&#10;    ll sum(ll l,ll r){&#10;        ll a=get()r);&#10;        ll b=get()l-1);&#10;        return a-b;&#10;    }&#10;};" description="" toReformat="true" toShortenFQNames="true" deactivated="true">
+    <context>
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+    </context>
+  </template>
+  <template name="dsu" value="   struct dsu{&#10;vl par,sz;&#10;dsu(ll n){&#10;  par.resize(n+1);&#10;  iota(all(par),0LL);&#10;  sz.assign(n+1,1);&#10;}&#10;ll get(ll node){&#10;  return (par[node]==node)?node:par[node]=get(par[node]);&#10;}&#10;bool mrg(ll a, ll b){&#10;  a=get(a);&#10;  b=get(b);&#10;  if(a==b)return 1;&#10;  if(sz[a]&lt;sz[b])swap(a,b);&#10;  par[b]=a;&#10;sz[a]+=sz[b];&#10;return 0;&#10;}&#10;  };&#10; " description="dsu" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="Angular" value="false" />
+      <option name="CMAKE" value="false" />
+      <option name="CSS" value="false" />
+      <option name="DART" value="false" />
+      <option name="HTML" value="false" />
+      <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+      <option name="JAVA_SCRIPT" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+      <option name="OTHER" value="true" />
+      <option name="Python" value="false" />
+      <option name="REQUEST" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="SQL" value="false" />
+      <option name="TypeScript" value="false" />
+      <option name="Vue" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="flood fill check" value="auto is=[&amp;](ll x,ll y){&#10;    return x&gt;=0&amp;&amp;x&lt;n&amp;&amp;y&gt;=0&amp;&amp;y&lt;n;&#10;};" description="" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="lca sparse" value="struct Sparse {&#10;    vector&lt;vl&gt;st;&#10;    vl idx;&#10;    vl d;&#10;    ll LOG=21;&#10;    ll mrg(ll x,ll y){&#10;        return d[x]&lt;d[y]?x:y;&#10;    }&#10;    Sparse(ll n,vl &amp;a,vl &amp;b,vl &amp;c) {&#10;        idx=b;&#10;        d=c;&#10;        st.assign(LOG,vl(n));&#10;        st[0]=a;&#10;        for(int j = 1;j &lt;= LOG;j++)&#10;            for(int i = 0;i+(1&lt;&lt;j) &lt; n;i++)&#10;                st[j][i] =mrg(st[j-1][i], st[j-1][i+(1&lt;&lt;(j-1))]);&#10;&#10;&#10;    }&#10;&#10;    int query(int l,int r) {&#10;        l=idx[l];&#10;        r=idx[r];&#10;&#10;        if(l&gt;r)swap(l,r);&#10;&#10;        int x = 31 - __builtin_clz(r-l+1);&#10;        return mrg(st[x][l],st[x][r-(1&lt;&lt;x)+1]);&#10;    }&#10;};" description="" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="segtree" value="struct segtree{&#10;&#10;    vector&lt;ll&gt;tree;&#10;    ll sz=1;&#10;    ll mrg(ll x,ll y)&#10;    {&#10;        return x+y;&#10;    }&#10;    void init(ll n)&#10;    {&#10;        sz=1;&#10;        while(sz&lt;n)sz*=2;&#10;        tree.assign(2*sz,0);&#10;    }&#10;&#10;    void up(ll x, ll lx, ll rx,ll i, ll v)&#10;    {&#10;        if(rx-lx==1)&#10;        {&#10;            tree[x]=v;&#10;&#10;            return;&#10;        }&#10;        ll mid=(lx+rx)&gt;&gt;1;&#10;        if(i&lt;mid)&#10;        {&#10;            up(2*x+1,lx,mid,i,v);&#10;        }&#10;        else{&#10;            up(2*x+2,mid,rx,i,v);&#10;        }&#10;        tree[x]=mrg(tree[2*x+1],tree[2*x+2]);&#10;    }&#10;    void up(ll i,ll v)&#10;    {&#10;        up(0,0,sz,i,v);&#10;    }&#10;    ll query(ll x,ll lx,ll rx,ll l,ll r)&#10;    {&#10;        if(lx&gt;=r||rx&lt;=l)return 0;&#10;        if(lx&gt;=l&amp;&amp;rx&lt;=r)return tree[x];&#10;        ll mid=(lx+rx)&gt;&gt;1;&#10;        return mrg(query(2*x+1,lx,mid,l,r),query(2*x+2,mid,rx,l,r));&#10;    }&#10;    ll query(ll l,ll r)&#10;    {&#10;        return query(0,0,sz,l,r);&#10;    }&#10;&#10;};" description="" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="sparse table" value="struct Sparse {&#10;    vector&lt;vl&gt;st;&#10;    ll LOG=21;&#10;    Sparse(ll n,vl &amp;a) {&#10;        st.assign(n,vl(LOG));&#10;        for(int j = 0;j &lt; LOG;j++)&#10;            for(int i = 0;i &lt; n;i++) if(i + (1 &lt;&lt; j) - 1 &lt; n)&#10;                    st[i][j] = (j ? min(st[i][j-1], st[i + (1 &lt;&lt; (j-1))][j-1]): a[i]);&#10;    }&#10;&#10;    int query(int l,int r) {&#10;        int x = 31 - __builtin_clz(r-l+1);&#10;        return min(st[l][x],st[r-(1&lt;&lt;x)+1][x]);&#10;    }&#10;};" description="" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="OC_DECLARATION_C" value="true" />
+      <option name="OC_DECLARATION_CPP" value="true" />
+      <option name="OTHER" value="true" />
+    </context>
+  </template>
+  <template name="modint" value="class ModInt {&#10;public:&#10; static long long MOD;&#10; long long value;&#10; ModInt() : value(0) {}&#10; ModInt(long long v) : value(v % MOD) {&#10;  if (value &lt; 0) value += MOD;&#10; }&#10; static void setMod(long long newMod) {&#10;  MOD = newMod;&#10; }&#10; ModInt&amp; operator=(const ModInt&amp; other) {&#10;  if (this != &amp;other) {&#10;   value = other.value;&#10;  }return *this;&#10; }&#10; ModInt&amp; operator+=(const ModInt&amp; other) {&#10;  value += other.value;&#10;  if (value &gt;= MOD) value -= MOD;&#10;  return *this;&#10; }&#10; ModInt&amp; operator-=(const ModInt&amp; other) {&#10;  value -= other.value;&#10;  if (value &lt; 0) value += MOD;&#10;  return *this;&#10; }&#10; ModInt&amp; operator*=(const ModInt&amp; other) {&#10;  value = value * other.value % MOD;&#10;  return *this;&#10; }&#10; ModInt pow(long long exp) const {&#10;  assert(exp&gt;= 0);&#10;  ModInt result = 1;&#10;  ModInt base = value;&#10;  while (exp &gt; 0) {&#10;   if (exp % 2 == 1)&#10;    result *= base;&#10;   base *= base;&#10;   exp /= 2;&#10;  } return result;&#10; }&#10; ModInt inv() const {&#10;  return pow(MOD - 2);&#10; }&#10; ModInt&amp; operator/=(const ModInt&amp; other) {&#10;  return *this *= other.inv();&#10; }&#10; bool operator&lt;(const ModInt&amp; other) const {&#10;  return value &lt; other.value;&#10; }&#10; bool operator&lt;=(const ModInt&amp; other) const {&#10;  return value &lt;= other.value;&#10; }&#10; bool operator&gt;(const ModInt&amp; other) const {&#10;  return value &gt; other.value;&#10; }&#10; bool operator&gt;=(const ModInt&amp; other) const {&#10;  return value &gt;= other.value;&#10; }&#10; bool operator==(const ModInt&amp; other) const {&#10;  return value == other.value;&#10; }&#10; bool operator!=(const ModInt&amp; other) const {&#10;  return value != other.value;&#10; }&#10; friend ModInt operator+(ModInt lhs, const ModInt&amp; rhs) {&#10;  return lhs += rhs;&#10; }&#10; friend ModInt operator-(ModInt lhs, const ModInt&amp; rhs) {&#10;  return lhs -= rhs;&#10; }&#10; friend ModInt operator*(ModInt lhs, const ModInt&amp; rhs) {&#10;  return lhs *= rhs;&#10; }&#10; friend ModInt operator/(ModInt lhs, const ModInt&amp; rhs) {&#10;  return lhs /= rhs;&#10; }&#10; friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const ModInt&amp; mi) {&#10;  return os &lt;&lt; mi.value;&#10; }&#10; friend std::istream&amp; operator&gt;&gt;(std::istream&amp; is, ModInt&amp; mi) {&#10;  long long x; is &gt;&gt; x; mi = ModInt(x); return is;&#10; }&#10;};&#10;long long ModInt::MOD = mod;&#10;using mint = ModInt;" description="" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="Angular" value="false" />
+      <option name="CMAKE" value="false" />
+      <option name="CSS" value="false" />
+      <option name="DART" value="false" />
+      <option name="HTML" value="false" />
+      <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+      <option name="JAVA_SCRIPT" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Python" value="false" />
+      <option name="REQUEST" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="SQL" value="false" />
+      <option name="TypeScript" value="false" />
+      <option name="Vue" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="oset" value="#include&lt;ext/pb_ds/tree_policy.hpp&gt;&#10;#include&lt;ext/pb_ds/assoc_container.hpp&gt;&#10;using namespace __gnu_pbds;&#10;template &lt;typename T&gt; using oset=tree&lt;T, null_type, less&lt;T&gt;, rb_tree_tag,tree_order_statistics_node_update&gt;;" description="" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="Angular" value="false" />
+      <option name="CMAKE" value="false" />
+      <option name="CSS" value="false" />
+      <option name="DART" value="false" />
+      <option name="HTML" value="false" />
+      <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+      <option name="JAVA_SCRIPT" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Python" value="false" />
+      <option name="REQUEST" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="SQL" value="false" />
+      <option name="TypeScript" value="false" />
+      <option name="Vue" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="ppp" value="char dir[]={'D','R','U','L'};" description="" toReformat="true" toShortenFQNames="true" deactivated="true">
+    <context>
+      <option name="Angular" value="false" />
+      <option name="CMAKE" value="false" />
+      <option name="CSS" value="false" />
+      <option name="DART" value="false" />
+      <option name="HTML" value="false" />
+      <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+      <option name="JAVA_SCRIPT" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Python" value="false" />
+      <option name="REQUEST" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="SQL" value="false" />
+      <option name="TypeScript" value="false" />
+      <option name="Vue" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="wwww" value="void solve" description="" toReformat="true" toShortenFQNames="true" deactivated="true">
+    <context>
+      <option name="Angular" value="false" />
+      <option name="CMAKE" value="false" />
+      <option name="CSS" value="false" />
+      <option name="DART" value="false" />
+      <option name="HTML" value="false" />
+      <option name="HTTP_CLIENT_ENVIRONMENT" value="false" />
+      <option name="JAVA_SCRIPT" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Python" value="false" />
+      <option name="REQUEST" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="SQL" value="false" />
+      <option name="TypeScript" value="false" />
+      <option name="Vue" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+</templateSet>
